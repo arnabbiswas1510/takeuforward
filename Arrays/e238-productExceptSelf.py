@@ -18,8 +18,6 @@ def productExceptSelf2(arr): #No extra space
         out[i]=arr[i-1]*out[i-1]
     right=1 #Use this variable here
     for i in range(n-1,-1,-1):
-        #out[lenArr-i-1]=out[lenArr-i-1]*arr[lenArr-i]*out[lenArr-i]
-        #out[i-1]*=arr[i]
         out[i]*=right
         right*=arr[i] #Remember the multiplication here
     return out
