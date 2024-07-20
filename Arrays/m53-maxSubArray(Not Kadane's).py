@@ -30,11 +30,12 @@ def maxSubarraySum3(arr, n):
     maxi = -sys.maxsize - 1  # maximum sum
     summ = 0
     for i in range(n):
-        summ += arr[i]
-        if summ <0:
-            summ = 0
+        # summ += arr[i]
+        # if summ <0:
+        #     summ = 0
         # Or the above 3 lines can be simply performed as:
-        # summ = max(arr[i], summ+arr[i]) #Remember this is arr[i] on left
+        summ = max(arr[i], summ+arr[i]) #Remember this is arr[i] on left
+        #Using summ = max(summ, summ+arr[i]) above gives u solution to Valley Peak problem
         maxi = max(maxi, summ) #Remember to indent this or wrong answer, same as n^2!!
     return maxi
 

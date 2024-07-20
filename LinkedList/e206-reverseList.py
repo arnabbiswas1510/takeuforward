@@ -3,34 +3,32 @@ class Node:
         self.data = data
         self.next = next_node
 
+def reverse(head):
+    prev=None
+    temp=head
+    while temp != None:
+        front=temp.next #Call this front and not next
+        temp.next=prev
+        prev=temp
+        temp=front
+    return prev #Just remember that there are 4 lines in the above loop
+    # and remember to return prev and not temp
+
 # Function to reverse a singly
 # linked list using a recursion
-def reverse_linked_list(head):
-    # Base case:
-    # If the linked list is empty or has only one node,
-    # return the head as it is already reversed.
-    if head is None or head.next is None:
-        return head
+"""
+Memorize the notes below but remember the Intuition here is to pop off a stack in reverse order
+Recursive calls give you the stack for free so no extra space needed
+"""
+def reverse2(head):
+    if head.next is None:
+        return head #Dont return nothing, return head, this is also crucial
+    newHead= reverse2(head.next) #I missed head.next and this is crucial
+    front=head.next #first remember this
+    front.next=head #this is obvious
+    head.next=None #Dont forget this, or error
+    return newHead #Always return newHead
 
-    # Recursive step:
-    # Reverse the linked list starting from the second node (head.next).
-    new_head = reverse_linked_list(head.next)
-
-    # Save a reference to the node following
-    # the current 'head' node.
-    front = head.next
-
-    # Make the 'front' node point to the current
-    # 'head' node in the reversed order.
-    front.next = head
-
-    # Break the link from the current 'head' node
-    # to the 'front' node to avoid cycles.
-    head.next = None
-
-    # Return the 'new_head,' which is the new
-    # head of the reversed linked list.
-    return new_head
 
 
 # Function to print the linked list
@@ -53,7 +51,7 @@ print("Original Linked List:", end=" ")
 print_linked_list(head)
 
 # Reverse the linked list
-head = reverse_linked_list(head)
+head = reverse2(head)
 
 # Print the reversed linked list
 print("Reversed Linked List:", end=" ")
