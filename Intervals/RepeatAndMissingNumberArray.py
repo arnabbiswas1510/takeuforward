@@ -10,6 +10,8 @@ Better: Use hashing with an array of size n and increment the ith index as u ite
 Then iterate through hash and return the keys with values 0 and 2. n time n space.
 
 Optimal: Mathematical and XOR below
+
+https://github.com/arnabbiswas1510/takeuforward/blob/a2d2a840ea456d61dc0b68e9961efe34a91f83dd/images/Intervals/RepeatAndMissingNumberArray.png
 """
 
 #Math method, see image for explanation
