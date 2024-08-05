@@ -12,32 +12,17 @@ Note that you don't need to modify intervals in-place. You can make a new array 
 """
 
 def insert(intervals, interval):
-    i=0
-    while i < len(intervals):
-        if intervals[i][0] < interval[0]:
-            i+=1
-        else:
-            if interval[0] < intervals[i-1][1]:
-                start= intervals[i-1][0]
-            else:
-                start=interval[0]
-            while interval[1] > intervals[i][1]:
-                i+=1
-            if interval[1] < intervals[i][0]:
-                end = interval[1]
-            else:
-                end = intervals[i][1]
-            break
     out=[]
-    i=0
-    while i < len(intervals):
-        if intervals[i][0]<=start <=intervals[i][1]:
-            intervalBegin=i
-            while intervals[i][0]<=end<=intervals[i][1]:
-                i+=1
-            out.append([intervalBegin,i])
-        out.append([intervals[i][0],intervals[i][1]])
-        i+=1
+    for i in range(len(intervals)):
+        #Remember below flow
+        if intervals[i][0] > interval[1]:
+            out.append(interval)
+            out.append(intervals[i:])
+        elif(intervals[i][1] < interval[0]):
+            out.append(intervals[i]) #Remember this and not inserting actual interval here
+        else:
+            interval=[min(interval[0], intervals[i][0]),
+                      max(interval[1], intervals[i][1])]
     return out
 
 print(insert([[1,3],[6,9]],[2,5]))
