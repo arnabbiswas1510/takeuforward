@@ -1,6 +1,8 @@
 import sys
 """
 Important Note about Kadane: Note that this is n^3 and NOT n^2!!
+In Kadane it's n^3 because of the extra loop for summing. Otherwise Brute force for similar 
+longest substring without repeating characters in n^2
 This is because u need to keep track of ALL subarrays - Not just the incremental ones (n^2)
 Note how this is done below (note the terminating condition in the k loop) 
 Hint: This is a subarray of i..j where i and j are dictated by the outer loop and j starts with i
