@@ -3,8 +3,9 @@ Brute force is to do an in order traversal and store the elements in an array. T
 element. n time but n space.
 Optimal solution is to perform in order traversal and keep reducing the cnt and return element when count is 0
 """
-#In recursive calls in order to save state pass all variables in a collection anstead of by value.
-# See below line 38 also for how this is done
+#In recursive calls in order to save state pass all variables in a collection instead of by value.
+# See below line 38 also for how this is done. No need to do this if the value wont change, but in case of cnt (like
+# this), this is required to do
 def kthSmallest(root, k):
     if root.left:
         kthSmallest(root.left, k)
