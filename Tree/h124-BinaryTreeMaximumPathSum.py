@@ -1,12 +1,14 @@
 """
 Combination of Kadane and Tree traversal
 """
+from typing import Optional
+from treeOperations import Tree
 
-def maxPathSum(self, root: Optional[TreeNode]) -> int:
+def maxPathSum(root: Optional[Tree]) -> int:
     maxPath = -float("inf")
 
     # post order traversal of subtree rooted at `node`
-    def gainFromSubtree(node: Optional[TreeNode]) -> int:
+    def gainFromSubtree(node: Optional[Tree]) -> int:
         nonlocal maxPath
 
         if not node:
@@ -30,7 +32,7 @@ def maxPathSum(self, root: Optional[TreeNode]) -> int:
     gainFromSubtree(root)
     return maxPath
 
-from treeOperations import Tree
+
 t=Tree()
 r=t.insertLevelOrder([5,3,6,2,4,None,None,1])
 k=[3]

@@ -203,8 +203,9 @@ class Tree:
         if not root:
             return []
         q = deque([root])
-        while q:
-            for _ in range(len(q)):
+        while q:#Why do we need 2 loops? Outer loop is for each level
+            for _ in range(len(q)): #Inner loop processes nodes already added in deque for this level, not the ones that
+                # will get added in this block. This is basically fail proofing to prevent ConcurrentModException
                 n = q.popleft()
                 print(n.val if n else None, end=",")
                 if n:
