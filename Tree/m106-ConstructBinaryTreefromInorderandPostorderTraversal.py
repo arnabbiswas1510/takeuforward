@@ -8,7 +8,6 @@ from treeOperations import Node, Tree
 
 def buildTree(inorder, postorder):
     def helper(inLeft, inRight):
-        root=None
         #Dont forget terminal condition
         if not postorder or inLeft > inRight:
             return None
