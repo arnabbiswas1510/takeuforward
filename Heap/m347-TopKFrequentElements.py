@@ -109,4 +109,4 @@ def topKFrequent3(nums, k):
             k-=len(buckets[i])
     return ans
 s=Solution()
-print(s.topKFrequent([1,1,1,2,2,3], 2))
+print(topKFrequent3([1,1,1,2,2,3], 2))
