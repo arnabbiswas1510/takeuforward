@@ -66,6 +66,7 @@ class SolutionBfs:
                             grid[row][col + 1] = "0"
         return num_islands
 
+#Uses iterative UnionFind. See recursive UnionFind instead in m323
 class UnionFind:
     def __init__(self, grid):
         self.count = 0
