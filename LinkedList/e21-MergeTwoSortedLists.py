@@ -20,7 +20,7 @@ def mergeTwoLists(list1, list2):
         temp.next=list1
     if list2 is not None:
         temp.next=list2
-    return result
+    return result.next
 
 
 # Function to print the linked list
