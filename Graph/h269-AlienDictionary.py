@@ -9,6 +9,10 @@ return "".
 
 Otherwise, return a string of the unique letters in the new alien language sorted in lexicographically increasing order
 by the new language's rules. If there are multiple solutions, return any of them.
+
+Implementation:
+1. Remember how to create adjacency list and in_degree (needed for both BFS and DFS)
+
 """
 from collections import defaultdict, Counter, deque
 from typing import List
@@ -85,3 +89,6 @@ class SolutionDfs:
             return ""
 
         return "".join(output)
+
+s=SolutionDfs()
+print(s.alienOrder(["wrt","wrf","er","ett","rftt"]))

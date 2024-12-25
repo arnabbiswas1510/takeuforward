@@ -1,7 +1,7 @@
 """
 Note here is that regular prefix array is calculated as follows:
 * Iterate over the given array from indices 1 to N – 1.
-* Calculate arr[i] = arr[i] * arr[i-1] for every ith index.
+* Calculate arr[i] = arr[i] * arr[i-1] for every ith index. #This is wrong, see below
 But since we want to exclude self, note how we do it below instead
 
 The intuition for the product of an array except the current element is to calculate the product of all numbers to the

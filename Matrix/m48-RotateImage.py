@@ -14,7 +14,8 @@ def rotate1(matrix):
     #Simple multiplication like [[-1]*rows]*cols doesnt work in the above
     for i in range(rows):
         for j in range(cols):
-            ans[j][cols-1-i] = matrix[i][j] #Write this out to get this
+            ans[j][cols-1-i] = matrix[i][j] #Write this out to get this - you will notice that col becomes rows
+            # and cols= cols-1-i
     return ans
 
 def rotate2(matrix): #Optimized with no extra storage

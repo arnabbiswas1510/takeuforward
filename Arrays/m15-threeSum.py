@@ -10,6 +10,8 @@ def threeSum(arr):
                 s.add(arr[j]) #Note what you add to s
     return res
 
+#This problem asks for the numbers themselves to be returned (ano not indexes). Hence below method will work (we lose
+# indexes after sorting)
 def threeSum2(arr):
     res=[]
     arr.sort() #This is fundamental to this method

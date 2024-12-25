@@ -75,7 +75,7 @@ class SolutionDfs:
 
         def dfs(row, col, reachable):
             # This cell is reachable, so mark it
-            reachable.add((row, col))
+            reachable._add((row, col))
             for (x, y) in [(1, 0), (0, 1), (-1, 0), (0, -1)]: # Check all 4 directions
                 new_row, new_col = row + x, col + y
                 # Check if the new cell is within bounds
