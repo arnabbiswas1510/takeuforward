@@ -53,14 +53,14 @@ class SolutionBfs:
 
         # Find all cells that can reach both oceans, and convert to list
         return list(pacific_reachable.intersection(atlantic_reachable))
-        """
-        Instead of collection.intersection function above this method can also be written manually as:
-        res=[]
-        for r in range(num_rows):
-            for c in range(numcols):
-                if (r,c) in pac and (r,c) in atl:
-                    res.append((r,c))    
-        """
+"""
+Instead of collection.intersection function above this method can also be written manually as:
+res=[]
+for r in range(num_rows):
+    for c in range(numcols):
+        if (r,c) in pac and (r,c) in atl:
+            res.append((r,c))    
+"""
 
 class SolutionDfs:
     def pacificAtlantic(self, matrix: List[List[int]]) -> List[List[int]]:
@@ -101,3 +101,6 @@ class SolutionDfs:
 
         # Find all cells that can reach both oceans, and convert to list
         return list(pacific_reachable.intersection(atlantic_reachable))
+
+s= SolutionBfs()
+print(s.pacificAtlantic([[1,2,2,3,5],[3,2,3,4,4],[2,4,5,3,1],[6,7,1,4,5],[5,1,1,2,4]]))

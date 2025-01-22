@@ -1,3 +1,4 @@
+
 class Node:
     # Data stored in the node
     def __init__(self, data1, next1=None):

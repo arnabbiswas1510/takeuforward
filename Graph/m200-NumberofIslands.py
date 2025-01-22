@@ -130,3 +130,12 @@ class SolutionUnionFind:
                         uf.union(r * nc + c, r * nc + c + 1)
 
         return uf.getCount()
+
+grid = [
+    ["1","1","0","0","0"],
+    ["1","1","0","0","0"],
+    ["0","0","1","0","0"],
+    ["0","0","0","1","1"]
+]
+s=SolutionDfs()
+print(s.numIslands(grid))
