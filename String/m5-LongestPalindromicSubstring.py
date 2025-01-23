@@ -13,6 +13,7 @@ class Solution:
 
             return True
 
+        #Check method below to print all substrings of a string in n^2
         for length in range(len(s), 0, -1):
             for start in range(len(s) - length + 1):
                 if check(start, start + length):
