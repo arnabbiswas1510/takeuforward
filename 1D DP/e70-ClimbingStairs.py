@@ -3,43 +3,59 @@ You are climbing a staircase. It takes n steps to reach the top.
 
 Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
 
+I didnt follow - The total number of ways to reach step n is the sum of the ways to reach:
 
+(n - 1) steps (if you took 1 step)
 
-Example 1:
+(n - 2) steps (if you took 2 steps)
 
-Input: n = 2
-Output: 2
-Explanation: There are two ways to climb to the top.
-1. 1 step + 1 step
-2. 2 steps
-Example 2:
+Ans:
+Let me explain why the total number of ways to climb n steps is the sum of:
 
-Input: n = 3
-Output: 3
-Explanation: There are three ways to climb to the top.
-1. 1 step + 1 step + 1 step
-2. 1 step + 2 steps
-3. 2 steps + 1 step
+Ways to climb (n-1) steps (after taking 1 step)
+
+Ways to climb (n-2) steps (after taking 2 steps)
+
+1. Understanding Choices at Each Step
+When you're at the bottom of a staircase with n steps, you have two options:
+
+Take a single step (1 step)
+
+Now you're at step 1, with (n-1) steps remaining.
+
+Take a double step (2 steps)
+
+Now you're at step 2, with (n-2) steps remaining.
+
+Example:
+For n = 3 (3 steps), your initial choices are:
+
+Option 1: Take 1 step → 2 steps left.
+
+Option 2: Take 2 steps → 1 step left.
+
 """
 from typing import List
 
 
 class SolutionTopDown:
-    def climbStairs(self, n: int) -> int:
-        memo = [0] * (n + 1)
-        return self.climb_Stairs(0, n, memo)
+    def climbStairs(self, n, memo=None):
+        if memo is None:
+            memo = {}  # Initialize memo table on first call
 
-    def climb_Stairs(self, i: int, n: int, memo: List[int]) -> int:
-        if i > n:
-            return 0
-        if i == n:
+        # Base cases, only base cases are different from Fibonacci series
+        if n == 0:
             return 1
-        if memo[i] > 0:
-            return memo[i]
-        memo[i] = self.climb_Stairs(i + 1, n, memo) + self.climb_Stairs(
-            i + 2, n, memo
-        )
-        return memo[i]
+        if n < 0:
+            return 0
+
+        # Check if already computed
+        if n in memo:
+            return memo[n]
+
+        # Compute and store the result
+        memo[n] = self.climbStairs(n - 1, memo) + self.climbStairs(n - 2, memo)
+        return memo[n]
 
 # Python3
 class SolutionBottomUp:
