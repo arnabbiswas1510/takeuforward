@@ -13,13 +13,17 @@ class Solution:
 
             return True
 
+        longest = ""
         #Check method below to print all substrings of a string in n^2
-        for length in range(len(s), 0, -1):
-            for start in range(len(s) - length + 1):
-                if check(start, start + length):
-                    return s[start : start + length]
-
-        return ""
+        n = len(s)
+        for i in range(n):          # Start index
+            for j in range(i, n):   # End index
+                if check(i, j+1):
+                    substring = s[i:j+1]
+                    #Instead of the check function you can also do: if substring == substring[::-1]:
+                    if len(substring) > len(longest):
+                        longest = substring
+        return longest
 
     def longestPalindrome2(self, s: str) -> str:
         n = len(s)
@@ -72,5 +76,5 @@ class Solution:
         return s[i : j + 1]
 
 s=Solution()
-print(s.longestPalindrome2("cdaabcbaab"))
+print(s.longestPalindrome("cdaabcbaab"))
 print(s.longestPalindrome2("cbbd"))

@@ -1,9 +1,21 @@
 """
+Key Insight:
+
+In a BST, for any node n, if p and q are both less than n, then the LCA must be in the left subtree of n.
+
+If p and q are both greater than n, then the LCA must be in the right subtree of n.
+
+Otherwise, n is the LCA. This happens when:
+
+One of p or q is equal to n (since a node is an ancestor of itself).
+
+p is in the left subtree and q is in the right subtree (or vice versa), meaning n is the split point where p and q
+diverge in different directions.
+
 Brute force: Traverse in order and generate array and then compute common parent using n/2 formula
 Optimal: Traverse in order and if direction needs to be changes to get to p and q then return that node. If
 direction didnt need changing then return the node you encountered first as the LCA
 
-Intuition behind the below is here: https://github.com/arnabbiswas1510/takeuforward/blob/9f1b3c9139d8f9ae3398d4ed610993f18bf9d8d2/images/Tree/m235-LowestCommonAncestorOfBinarySearchTree.png
 """
 
 def lowestCommonAncestor(root, p, q):
