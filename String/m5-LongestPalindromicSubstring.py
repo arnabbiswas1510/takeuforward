@@ -27,65 +27,29 @@ class Solution:
 
     def longestPalindrome2(self, s: str) -> str:
         n = len(s)
-        if n < 2:
-            return s
+        dp = [[False]*n for _ in range(n)]
+        res = ""
 
-        # Initialize DP table
-        dp = [[False] * n for _ in range(n)]
-
-        # Every single character is a palindrome
-        for i in range(n):
-            dp[i][i] = True
-
-        max_len = 1
-        start = 0
-
-        # Check for substrings of length 2
-        for i in range(n - 1):
-            if s[i] == s[i + 1]:
-                dp[i][i + 1] = True
-                start = i
-                max_len = 2
-
-        # Check for substrings longer than 2
-        for length in range(3, n + 1):
-            for i in range(n - length + 1):
-                j = i + length - 1  # ending index
-                if s[i] == s[j] and dp[i + 1][j - 1]:
-                    dp[i][j] = True
-                    if length > max_len:
-                        max_len = length
-                        start = i
-
-        return s[start:start + max_len]
+        for i in range(n-1, -1, -1):
+            for j in range(i, n):
+                # Check if substring is palindrome
+                dp[i][j] = (s[i] == s[j]) and (j-i < 2 or dp[i+1][j-1])
+                if dp[i][j] and (j-i+1) > len(res):
+                    res = s[i:j+1]
+        return res
 
     def longestPalindrome3(self, s: str) -> str:
-        def expand(i, j):
-            left = i
-            right = j
+        def expand(l, r):
+            while l >= 0 and r < len(s) and s[l] == s[r]:
+                l -= 1
+                r += 1
+            return s[l+1:r]  # Return valid palindrome
 
-            while left >= 0 and right < len(s) and s[left] == s[right]:
-                left -= 1
-                right += 1
-
-            return right - left - 1
-
-        ans = [0, 0]
-
+        res = ""
         for i in range(len(s)):
-            odd_length = expand(i, i)
-            if odd_length > ans[1] - ans[0] + 1:
-                dist = odd_length // 2
-                ans = [i - dist, i + dist]
-
-            even_length = expand(i, i + 1)
-            if even_length > ans[1] - ans[0] + 1:
-                dist = (even_length // 2) - 1
-                ans = [i - dist, i + 1 + dist]
-
-        i, j = ans
-        return s[i : j + 1]
+            res = max(res, expand(i, i), expand(i, i+1), key=len)
+        return res
 
 s=Solution()
-print(s.longestPalindrome("cdaabcbaab"))
+print(s.longestPalindrome3("cdaabcbaab"))
 print(s.longestPalindrome2("cbbd"))
