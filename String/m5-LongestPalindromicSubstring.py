@@ -25,7 +25,41 @@ class Solution:
                         longest = substring
         return longest
 
-    def longestPalindrome2(self, s: str) -> str:
+    def longestPalindrome(self, s: str) -> str:
+        n = len(s)
+        if n <= 1:
+            return s
+
+        # Initialize a DP table (n x n) where dp[i][j] = True if s[i..j] is a palindrome
+        dp = [[False] * n for _ in range(n)]
+        start = 0      # Starting index of the longest palindrome
+        max_len = 1     # Length of the longest palindrome (minimum is 1 for single characters)
+
+        # Every single character is a palindrome (base case)
+        for i in range(n):
+            dp[i][i] = True
+
+        # Check for substrings of length 2
+        for i in range(n - 1):
+            if s[i] == s[i + 1]:
+                dp[i][i + 1] = True
+                start = i
+                max_len = 2
+
+        # Check for substrings of length >= 3
+        for length in range(3, n + 1):          # length of substring
+            for i in range(n - length + 1):     # starting index
+                j = i + length - 1              # ending index
+                # Check if the outer characters match and the inner substring is a palindrome
+                if s[i] == s[j] and dp[i + 1][j - 1]:
+                    dp[i][j] = True
+                    if length > max_len:
+                        start = i
+                        max_len = length
+
+        return s[start:start + max_len]
+
+    def longestPalindrome3(self, s: str) -> str:
         n = len(s)
         dp = [[False]*n for _ in range(n)]
         res = ""
@@ -38,7 +72,7 @@ class Solution:
                     res = s[i:j+1]
         return res
 
-    def longestPalindrome3(self, s: str) -> str:
+    def longestPalindrome4(self, s: str) -> str:
         def expand(l, r):
             while l >= 0 and r < len(s) and s[l] == s[r]:
                 l -= 1
